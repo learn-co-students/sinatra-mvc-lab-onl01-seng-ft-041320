@@ -1,5 +1,6 @@
 class PigLatinizer
   attr_reader :words
+  
  
   def piglatinize(word)
     if word.split(" ").count == 1
@@ -9,7 +10,6 @@ class PigLatinizer
       new_phrase = phrase.map {|w| piglatinize_word(w)}
       new_phrase.join(" ")
     end
-    
   end
 
   def piglatinize_word(word)
