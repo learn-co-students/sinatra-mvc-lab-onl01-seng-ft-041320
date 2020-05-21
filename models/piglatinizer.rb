@@ -1,28 +1,26 @@
 class PigLatinizer
 
-    def piglatinize(word)
-        if word.split(" ").count == 1
-            piglatinize_word(word)
-        else
-            phrase = word.split(" ")
-            new_phrase = phrase.map {|w| piglatinize_word(w)}
-            new_phrase.join(" ")
-        end
-    end 
-
-    def piglatinize_word(word)
-        if word.downcase.start_with?(/[aeiou]/)
-            word + "way"
-        else
-            while word.downcase.start_with?(/[bcdfghjklmnpqrstvwxyz]/)
-                word = word.split('')
-                first_letter = word[0]
-                word.shift
-                word << first_letter
-                word = word.join('')
-            end
-            word + "ay"
-        end
+    def piglatinize(input_str)
+      input_str.split(" ").map{ |word| piglatinize_word(word)}.join(" ")
     end
-    
+  
+    private
+  
+    def vowel?(char)
+      char.match(/[aAeEiIoOuU]/)
+    end
+  
+    def piglatinize_word(word)
+      # word starts with vowel
+      if vowel?(word[0])
+        word + "way"
+      else
+      # word starts with one or more consonants
+        vowel_index = word.index(/[aAeEiIoOuU]/)
+        consonants = word.slice(0..vowel_index-1)
+        word_leftover = word.slice(vowel_index..word.length)
+        word_leftover + consonants + "ay"
+      end
+    end
+  
   end
