@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+  </head>
+  <body>
+    <h1>Your phrase in piglatin</h1>
+    <% @pig_latin = PigLatinizer.new.piglatinize(@user_phrase) %>
+    <h2><%= @pig_latin %></h2>
+  </body>
+</html>
